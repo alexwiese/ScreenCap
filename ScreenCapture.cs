@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using Microsoft.VisualBasic;
 using ScreenCap.NativeMethods;
 
@@ -194,9 +195,13 @@ namespace ScreenCap
                     Console.WriteLine(e.ToString());
                     Environment.Exit(9);
                 }
-
-
             }
+
+            // Create directory if it doesn't exist
+            var directoryName = Path.GetDirectoryName(_file);
+            if(!string.IsNullOrWhiteSpace(directoryName))
+                Directory.CreateDirectory(directoryName);
+
             try
             {
                 if (_fullscreen)
